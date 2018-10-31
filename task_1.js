@@ -75,30 +75,54 @@ console.log(b2);
 //array chunking
 function chunk() {
     var array = [1, 2, 3, 4, 5, 6, 7,45,45,322,23];
+    //the chunked arrays will be stored in chunked_arr
     var chunked_arr = [];
     
-
+    //looping through array
     for (let i = 0; i < array.length; i++) {
+        //creating a temporary array 
         var temp = [];
 
+        //checking condition if the loop is running the second time
+        //when i reaches 1 (in second loop) we add the value from array because first two elements will always be the same
+        //so we add the first two elements manually
         if (i == 1) {
+            //adding elements in temporary array from the actual array
             temp[0] = array[0];
             temp[1] = array[1];
+            //pushing the temporary array to the chunked array
             chunked_arr.push(temp);
 
+        //managing the index number
+        //if the loop is running for the (odd number time) it should skip this
+        //when the loop is even number times then it will enter this loop  
+        //beacuse when the loop is running for two times, two elements can be added together 
+        //i.e. if the array is added one at a time the result may be [[1],[2],[3],[4]] instead of [[1,2],[1,3]] 
+        //to chunk two elements should be separated
         } else if (i > 1 && i % 2 == 0) {
+            //the last index value
+            //this loop runs only if the loop is in last loop i.e. i == array.length -1
+            //if the array length is of odd number the last element should be added in single 
+            //i.e.[[1,2],[3,4],[5]]
+            //here last element is single because of the array length being odd number
             if (array.length % 2 != 0 && i == array.length - 1) {
                 temp[0] = array[array.length - 1];
+                //pushing in chunked array
                 chunked_arr.push(temp);   
                 break;
             }
+            //if the array length is even number it will skip above step
+            //since temp[0] will remove the previous element and add new element 
+            //it is necessary to specify temp[0] because while adding in chunked array it should no be like 
+            //[[1,2],[undefined,undefined,3,4],[and so on]]
+            //it will add as separate array
+            //now array[i] will be added and pushed to chunked_arr
+            //temp[0] will store current array[i=(current i value)] so no undefined confilcts occur
             temp[0] = array[i];
+            //temp[1] will store array[i +1] the next element from array[i]
             temp[1] = array[i + 1];
             chunked_arr.push(temp);
-        }
-
-        
-
+        } 
     }
     console.log(chunked_arr);
 }
