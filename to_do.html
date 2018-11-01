@@ -26,7 +26,7 @@
         var taskInput = document.getElementById("task");
         var btn = document.getElementById("btn");
         var list = document.getElementById("list");
-        var id = 1;
+        
         //listening event to button
         btn.addEventListener("click", addToDo);
 
@@ -43,10 +43,9 @@
             //var t = document.createTextNode(text);
 
             //for child element li
-            var cb = `<li id="li-${id}">${text}<input type="checkbox" /></li>`;
+            var cb = `<li>${text}<input type="checkbox" /></li>`;
             //li.appendChild(t);
-            id++;//incrementing id
-
+            
             //inserting 
             list.insertAdjacentHTML("beforeend", cb);
             //appending li in ul
@@ -55,9 +54,11 @@
         }
 
         function boxChecked(event) {
+            
             const element = event.target;
             if (element.type === "checkbox") {
-                console.log("checked");
+                element.parentNode.style.textDecoration = "line-through";
+                element.style.visibility="hidden";
             }
         }
 
