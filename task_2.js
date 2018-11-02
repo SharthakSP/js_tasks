@@ -34,8 +34,11 @@ function set () {
     var b2 = [];
     b2[0] = "";
     b2[b1.length] = b1;
-    for (let i =0;i<b2.length+1;i++) {
-
+    for (let i =0;i<b1.length;i++) {
+        var temp = [];
+        for (let j= i+1;j<b1.length;j++) {
+            let b3 = 
+        }
     }
 }
 set();
